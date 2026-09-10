@@ -4,6 +4,31 @@ Dokumentasi riwayat rilis, fungsi, dan evolusi fitur aplikasi ANTIPAS sejak awal
 
 ---
 
+## 🚀 Version 3.8.4 (2026-09-10) - *Current Release*
+
+### 📱 Panduan Visual Koneksi ADB & Dialog Otentikasi RSA (Mockup SVG)
+- **Prompt Interaktif Pasca-Startup**: Menampilkan link otomatis di HUD terminal: `>>> Cara koneksi perangkat Android, klik Di Sini Boss :0 <<<` tepat setelah pemeriksaan versi.
+- **Pembersihan Log Otomatis**: Layar dibersihkan secara instan saat link panduan diklik agar fokus dan informatif.
+- **Ilustrasi Mockup Smartphone Vektor SVG**: Render grafis vektor resolusi tinggi layar smartphone dengan dialog otentikasi RSA asli (*"Izinkan debugging USB?"*).
+- **Penunjuk Poin Kritis**: Callout visual kotak centang `[✓] Selalu izinkan dari komputer ini` dan tombol `[ IZINKAN ]` untuk mencegah status `unauthorized`.
+- **Tabel Navigasi 7x Tap Vendor**: Panduan langkah demi langkah mengaktifkan Opsi Pengembang untuk Xiaomi/HyperOS, Samsung One UI, OPPO ColorOS, Realme UI, Vivo/iQOO, Transsion Infinix/Tecno/itel, Huawei/Honor, dan Google Pixel.
+- **Popup Khusus Pabrikan**: Edukasi peringatan 3 tahap hitung mundur 5 detik Xiaomi, konfirmasi akses data Samsung, switch koneksi OTG 10 menit OPPO/Realme, otorisasi Vivo, dan HiSuite HDB Huawei.
+- **Aksi Cepat 1-Klik**: Tombol instan Scan, Connect, Install Driver WHQL, dan Clear di bawah panduan.
+
+### 🛠️ Driver Engine WHQL Multi-Vendor Universal (Enriched)
+- **Dukungan Huawei & HiSilicon Kirin**: Kirin 9000/990/985/980/970/820/810/710/659, Huawei USB COM 1.0 (Testpoint Mode unbrick), HDB Bridge, CDC Modem.
+- **Dukungan Transsion Holdings**: Infinix (GT/Zero/Note/Hot), Tecno (Phantom/Camon/Pova/Spark), itel (S/P/A), Preloader MTK, Unisoc Diag, Carlcare Service Port.
+- **Dukungan OPPO Mobile (ColorOS)**: OPPO Preloader USB VCOM, Qualcomm MSM EDL 9008, CDC Diag Serial.
+- **Dukungan Realme Mobile (Realme UI)**: Realme USB Driver, OPLUS BootROM handshake, Fastboot Composite.
+- **Dukungan Vivo & iQOO (OriginOS / FuntouchOS)**: Vivo USB AT & Diag Port, Preloader VCOM, EDL 9008, Fastboot.
+- **Platform Lainnya**: Qualcomm QDLoader 9008, MediaTek Dimensity/Helio, Samsung Exynos/Odin, Unisoc Tiger, Xiaomi HyperOS, Google Tensor.
+
+### 🛡️ Proteksi Biner & Rilis Distribusi (Code Virtualizer)
+- **Code Virtualizer Protection**: Proteksi biner rilis `dist/antipas.exe` dengan virtualisasi instruksi opcode dan enkripsi string anti-reverse engineering.
+- **Paket Distribusi Bersih**: Pembuatan arsip terkompresi rilis `3.8.4.dist.7z` (LZMA2 Ultra) berisi biner terproteksi, DLL, engine malware, driver scripts, dan dokumentasi lengkap.
+
+---
+
 ## 🚀 Version 3.8.3 (2026-09-10) - *Latest Stable Release*
 
 ### 🛠️ Pemasangan & Pembaruan Driver Mobile Signed WHQL

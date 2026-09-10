@@ -1,0 +1,208 @@
+================================================================================
+                    ANTIPAS - ANDROID FORENSIC & MULTI-TOOL STATION
+                             DOKUMENTASI FITUR LENGKAP
+                                   Versi: v3.8.4
+================================================================================
+
+1. MULTI-PROTOCOL DEVICE DISCOVERY & KONEKTIVITAS
+--------------------------------------------------------------------------------
+- Auto-Discovery Multi-Bus Cerdas:
+  * ADB (Android Debug Bridge): High-Speed Direct Socket DLL (antipas_adb.dll) & Native CLI.
+  * Fastboot (Bootloader): Komunikasi langsung endpoint bootloader hardware vendor.
+  * MTP (Media Transfer Protocol): Penjelajahan media storage Windows Portable Devices.
+  * Modem / Service Port: Port serial COM / AT command & mode META MediaTek.
+  * Sideload: Saluran pembaruan paket OTA recovery.
+  * Huawei HDB: Sinkronisasi jembatan debug khusus perangkat Huawei & HiSilicon Kirin.
+  * Transsion & OPLUS Preloader: Deteksi port handshake BROM MediaTek & Unisoc.
+- Smart Device ComboBox:
+  * Menampilkan informasi serial, protokol aktif, codename perangkat, dan status lock.
+  * Format: [SERIAL] [PROTOKOL:KODE_MESIN] NAMA_PRODUK (STATUS_LOCK)
+  * Contoh: [QSGEMBQCFIWC9PTG] [FASTBOOT:dew] dew (LOCKED)
+- Tombol Aksi Adaptif:
+  * Label tombol otomatis berubah mengikuti perangkat: 
+    "⚡ CONNECT FB", "CONNECT MTP", "CONNECT COM", atau "CONNECT ADB".
+  * Otomatis berubah menjadi "DISCONNECT" saat sesi aktif tersambung.
+- Hardware & Driver Intelligence:
+  * Membaca informasi Vendor ID (VID), Product ID (PID), nama driver USB, dan status INF 
+    secara real-time melalui Windows SetupAPI & CfgMgr32.
+- Device Manager Smart Fallback:
+  * Mampu mengenali perangkat yang driver-nya bermasalah tanpa menimpa node Fastboot valid.
+
+
+2. FASTBOOT ENGINE & BOOTLOADER MASTER CONTROLLER
+--------------------------------------------------------------------------------
+- ⚡ Connect Fastboot (Direct Link & Sync):
+  * Membuka koneksi bus langsung ke endpoint bootloader tanpa perantara daemon ADB.
+- Smart Telemetry & Diagnostic (getvar all parser):
+  * Security Matrix: Status Bootloader (LOCKED/UNLOCKED), status FRP (PERSISTENT/DISABLED), 
+    dan Security Engine (SECURE-BOOT S-ON / ENGINEERING S-OFF).
+  * Hardware Identity: Device Serial, Product Name, SKU/Variant, active slot.
+  * System Firmware: Versi bootloader dan baseband modem radio.
+  * Partition Topology: Menampilkan seluruh kapasitas dan tipe partisi (>70 partisi: 
+    system, vendor, boot, vbmeta, super, nvdata, nvram, preloader, dll.) 
+    dengan alokasi heap 64KB aman anti-crash.
+- Bootloader Lock & Security Wipe:
+  * Unlock Bootloader: Eksekusi "flashing unlock" & "oem unlock".
+  * Lock Bootloader: Eksekusi "flashing lock" & "oem lock".
+  * Erase FRP Lock: Menghapus partisi proteksi akun Google (FRP) via Fastboot.
+  * Wipe Userdata & Cache: Reset pabrik total via Fastboot (fastboot -w).
+  * Switch Active A/B Slot: Mengganti partisi aktif slot A/B (set active other).
+- Flashing & Image Management:
+  * Flash Boot Partition: Flashing kernel boot image (boot.img).
+  * Flash Recovery Partition: Flashing kustom recovery (TWRP/OrangeFox).
+  * Boot Temporary Image: Boot file image ke RAM sementara tanpa menimpa flash memory.
+  * Dump All Variables: Dump seluruh variabel bootloader (getvar all).
+  * OEM Device Info: Membaca rincian perangkat OEM vendor (oem device-info).
+- Advanced Power & Reboot Handlers:
+  * Reboot Normal (System).
+  * Reboot Bootloader / Fastboot.
+  * Reboot Recovery Mode.
+  * Reboot FastbootD (User-Space Fastboot untuk Android 10+).
+  * Reboot Emergency Download Mode (Qualcomm EDL 9008).
+
+
+3. ADB ENGINE & ANALISIS SISTEM HANDPHONE
+--------------------------------------------------------------------------------
+- Smart Hardware Reading (Detail Info HP):
+  * Merek & Tipe Pabrikan (Brand & Model).
+  * Kode Mesin & Board.
+  * Versi Android & Level API SDK.
+  * Arsitektur CPU (CPU ABI).
+  * Resolusi Layar & Level Baterai.
+- Master Application Sheet (App Manager):
+  * Menginventarisasi seluruh paket terinstal (System & User 3rd-party).
+  * Tombol aksi interaktif "[ UNINSTALL ]" 1-klik langsung di log viewer.
+- Malware Shield Scrutiny:
+  * Memindai aplikasi terinstal terhadap database malware (malwares.json).
+  * Tombol mitigasi cepat: "[ STOP ]", "[ PURGE ]", "[ UNINSTALL ]", dan "[ FORCE_DELETE ]".
+- Debloater Engine (Remove BLOATWARE & Ads):
+  * Pembersih aplikasi bawaan, bloatware OEM, dan adware/tracking dalam 1 klik.
+- Disable OTA Updates:
+  * Mematikan service pembaruan sistem otomatis latar belakang.
+- Live Logcat Streaming:
+  * Menangkap aliran log sistem Android secara langsung untuk diagnosa dan debugging.
+- Google Play Services Restoration Center:
+  * Mendeteksi versi Android, memperbaiki dan memasang kembali Google Play Store, 
+    Google Play Services, dan komponen sinkronisasi Google.
+- Samsung Expert Tools:
+  * Tombol aksi khusus: Remove FRP, Factory Reset, Reboot Download Mode, dan Deep Analysis.
+- ADB Multi-Bypass FRP:
+  * Prosedur otomatis bypass FRP multi-tahap via jalur ADB.
+- Raw Shell Execution:
+  * Eksekusi langsung perintah shell Linux Android dengan parsing respon instan.
+
+
+4. DIGITAL FORENSICS & METADATA HARVESTER
+--------------------------------------------------------------------------------
+- Automated Case Archiving:
+  * Otomatis membuat folder arsip barang bukti berbasis identitas perangkat:
+    forensic\<Model>_<AndroidID>_NIK_<Serial>_FULL_<Timestamp>
+- Fase 1 — Media Discovery (Bukti Visual):
+  * Ekstraksi dan pengunduhan berkas gambar dan video dari direktori:
+    /sdcard/DCIM, /sdcard/Pictures, /sdcard/WhatsApp/Media, /sdcard/Telegram, /sdcard/Download.
+- Fase 2 — Core Communications Harvest:
+  * Akses Root: Ekstraksi basis data SQLite SMS & Kontak (mmssms.db, contacts2.db).
+  * Non-Root: Ekstraksi SMS melalui Content Provider Android (content://sms).
+- Full System Archive & Restore:
+  * Pencadangan arsip penuh sistem dan pemulihan citra partisi secara aman.
+
+
+5. SIDELOAD (RECOVERY OTA) FLASHER
+--------------------------------------------------------------------------------
+- Sideload Get Info: Memeriksa kesiapan perangkat dalam mode Sideload recovery.
+- Sideload Flash (.zip): Flashing pembaruan OTA, custom ROM, atau zip package.
+- Sideload Power Management: Reboot ke sistem atau kembali ke menu Recovery.
+
+
+6. MODEM / COM / MTK SERVICE MODE
+--------------------------------------------------------------------------------
+- Scan COM Ports & META Info: Membaca status service mode dan info perangkat lewat port AT.
+- Factory Lock Wipe: Penghapusan kunci pabrik melalui service port.
+
+
+7. USB DEVICE TOPOLOGY TREE VIEWER
+--------------------------------------------------------------------------------
+- Jendela Khusus Topology Viewer (TopMost):
+  * Menampilkan struktur pohon hierarki USB Controller, Root Hub, Hub Ports, dan node perangkat.
+  * Menyajikan data Vendor ID (VID), Product ID (PID), dan nama Device Descriptor.
+  * Fitur toggle "Show Hidden / Disconnected Devices" untuk melacak riwayat koneksi USB.
+
+
+8. CYBERPUNK HUD TERMINAL & CLI CONSOLE
+--------------------------------------------------------------------------------
+- Modern Embedded Web Host Viewer (MSHTML/HTML5):
+  * Antarmuka cepat berbasis HTML/CSS dengan tema cyberpunk gelap.
+  * Tag status warna interaktif dan auto-linkify untuk link unduhan dan path folder.
+- Interactive CLI Console (Terminal Bawah):
+  * Mendukung auto-complete hints, command history popup, dan cue banner.
+  * Perintah yang didukung:
+    * HELP          : Menampilkan daftar manual perintah.
+    * GUIDE         : Membuka panduan visual koneksi Android & dialog otentikasi RSA (Mockup SVG).
+    * DRIVER        : Memasang dan menyinkronkan seluruh signed driver mobile WHQL resmi.
+    * SCAN          : Menjalankan diagnosa cerdas (Basic).
+    * INFO / SMART  : Menjalankan analisa mendalam (Full Scrutiny).
+    * CONNECT       : Menghubungkan sesi ke perangkat aktif.
+    * DISCONNECT    : Memutus jembatan koneksi perangkat.
+    * REBOOT        : Meminta restart sistem normal.
+    * RECOVERY      : Me-reboot perangkat ke partisi Recovery.
+    * BOOTLOADER    : Me-reboot perangkat ke mode Fastboot/Bootloader.
+    * BACKUP        : Menjalankan pencadangan arsip sistem.
+    * RESTORE       : Membuka antarmuka pemulihan berkas.
+    * DISABLE_OTA   : Mematikan layanan OTA update latar belakang.
+    * BLOATWARE     : Menghapus aplikasi bawaan dan iklan.
+    * UPDATE        : Memeriksa dan mengunduh pembaruan rilis terbaru dari server GitHub.
+    * FASTBOOT <cmd>: Menjalankan perintah Fastboot kustom (contoh: fastboot devices).
+    * SHELL <cmd>   : Menjalankan perintah ADB shell kustom (contoh: shell getprop).
+    * CLEAR         : Membersihkan tampilan log terminal.
+    * EXIT          : Menutup stasiun kerja ANTIPAS.
+- Menu Konteks Klik Kanan:
+  * Copy, Copy Selection, Clear Log, Screenshot HUD, Restart Station.
+
+- Interactive ADB Connection Guide & Visual Authentication Popups (NEW v3.8.4):
+  * Prompt log interaktif otomatis di terminal tepat setelah inisiasi startup selesai:
+    ">>> Cara koneksi perangkat Android, klik Di Sini Boss :0 <<<"
+  * Pembersihan terminal instan (BrowserClear) saat tautan diklik sehingga panduan tampil bersih dan fokus.
+  * Mockup Vektor SVG Layar Smartphone beresolusi tinggi dengan dialog otentikasi RSA asli ("Izinkan debugging USB?"):
+    - Penunjuk kotak centang kritis: "[✓] Selalu izinkan dari komputer ini" (Always allow from this computer).
+    - Tombol aksi terarah: "[ BATAL ]" dan highlighted "[ IZINKAN ]".
+    - Mencegah terjadinya status perangkat "unauthorized" saat pertama kali kabel USB dicolokkan.
+  * Tabel panduan navigasi 7x tap Build Number untuk seluruh brand (Xiaomi/HyperOS, Samsung One UI, OPPO ColorOS, Realme UI, Vivo/iQOO, Transsion Infinix/Tecno/itel, Huawei/Honor, Google Pixel).
+  * Penjelasan popup otentikasi khusus vendor:
+    - Xiaomi / HyperOS: 3-tahap peringatan bahaya hitung mundur 5 detik untuk "Instal via USB" & "Debugging USB (Setelan Keamanan)".
+    - Samsung: Konfirmasi izin "Izinkan akses data ponsel?".
+    - OPPO & Realme: Fitur switch "Koneksi OTG" di Pengaturan Tambahan (auto-off 10 menit).
+    - Vivo & iQOO: Konfirmasi risiko otorisasi USB Debugging.
+    - Huawei: Opsi "Izinkan HiSuite menggunakan HDB".
+  * Tombol navigasi aksi cepat interaktif di akhir panduan: Scan, Connect, Install Driver WHQL, Clear.
+
+- Driver Engine WHQL Multi-Vendor Universal (ENRICHED v3.8.4):
+  * Menu khusus "Install Mobile Driver (Signed Update)" pada Reboot Dropdown di indeks paling akhir.
+  * Pemasangan & pembaruan signed driver WHQL Windows resmi dari Windows Update Catalog & Driver Store untuk:
+    - Huawei & HiSilicon Kirin: Kirin 9000/990/985/980/970/820/810/710/659, Huawei USB COM 1.0 (Testpoint Mode unbrick), HDB Bridge, CDC Modem.
+    - Transsion Holdings: Infinix (GT/Zero/Note/Hot), Tecno (Phantom/Camon/Pova/Spark), itel (S/P/A), Preloader MTK, Unisoc Diag, Carlcare Service Port.
+    - OPPO Mobile (ColorOS): OPPO Preloader USB VCOM, Qualcomm MSM EDL 9008, CDC Diag Serial.
+    - Realme Mobile (Realme UI): Realme USB Driver, OPLUS BootROM handshake, Fastboot Composite.
+    - Vivo & iQOO (OriginOS / FuntouchOS): Vivo USB AT & Diag Port, Preloader VCOM, EDL 9008, Fastboot.
+    - Qualcomm Snapdragon: HS-USB QDLoader 9008, EDL Emergency Mode, Diagnostic Serial.
+    - MediaTek Dimensity & Helio: Preloader, DA Port, BootROM USB VCOM.
+    - Samsung Exynos & Shannon Modem: Mobile USB Modem CDC, AT Command, Odin Download Mode.
+    - Unisoc / Spreadtrum (SPRD): SPRD U2S Diag Port & Tiger Series Download Platform.
+    - Xiaomi HyperOS / MIUI, Google Tensor (Pixel WinUSB), Motorola, ASUS ROG, Sony Xperia, LG.
+  * Progres 5-tahap informatif dengan re-enumerasi native PnP bus dan sinkronisasi stack ADB/Fastboot.
+
+- Net-Sentinel Diagnostics & Zero-Touch Auto-Update:
+  * Diagnostik koneksi internet native (ICMP ping ke 1.1.1.1 & 8.8.8.8) dengan rating kesehatan real-time.
+  * Uji keterjangkauan upstream endpoint GitHub (github.com port 443 handshake).
+  * Auto-Updater berprogres visual blok Unicode [████████░░░░] dan kalkulasi kecepatan streaming (KB/s, MB/s).
+  * Deployment otomatis: Verifikasi kontainer ZIP -> Countdown transparan -> Auto-close -> Ekstraksi background -> Sinkronisasi biner -> Auto-relaunch v3.8.4 tanpa ribet install manual.
+
+- Standby Universal Reboot Menu & Modern Window Framing:
+  * Menu Reboot selalu dapat dibuka kapan saja meskipun tidak ada perangkat yang tersambung.
+  * Opsi reboot reguler di-grayed out secara aman saat standby, opsi Install Mobile Driver tetap aktif.
+  * Format judul jendela dinamis: "[3.8.4] Antipas - Hemodialyzer Built for Android Platform".
+  * Ukuran batas minimum form GUI 870 x 590 px (WM_GETMINMAXINFO) dengan layout responsif anti-overlap.
+  * Biner rilis terproteksi menggunakan Code Virtualizer (virtualisasi instruksi opcode & enkripsi string).
+
+================================================================================
+                         (C) ANTIPAS DEVELOPMENT TEAM 2026
+================================================================================
