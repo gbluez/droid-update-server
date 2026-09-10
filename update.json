@@ -1,5 +1,5 @@
-{
+﻿{
   "version": "3.8.3",
   "url": "https://github.com/gbluez/droid-update-server/archive/refs/heads/main.zip",
-  "info": "Update ANTIPAS v3.8.3: Install Mobile Driver WHQL, Network Sentinel, Dynamic Title dan Min Form Size"
+  "info": "Update ANTIPAS v3.8.3: Driver Engine WHQL Multi-Vendor (Huawei HiSilicon Kirin, Qualcomm, MediaTek, Samsung, Unisoc, Xiaomi), Network Sentinel, Zero-Touch Auto-Update"
 }
