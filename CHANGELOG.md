@@ -4,7 +4,28 @@ Dokumentasi riwayat rilis, fungsi, dan evolusi fitur aplikasi ANTIPAS sejak awal
 
 ---
 
-## 🚀 Version 3.8.2 (2026-09-05) - *Latest Stable Release*
+## 🚀 Version 3.8.3 (2026-09-10) - *Latest Stable Release*
+
+### 🛠️ Pemasangan & Pembaruan Driver Mobile Signed WHQL
+- **Universal Mobile Driver Installer**: Menambahkan menu "Install Mobile Driver" di Reboot dropdown (indeks paling akhir di bawah separator) dan perintah CLI (`driver` / `install_driver`).
+- **Cakupan Lengkap Virtual COM**: Pemasangan signed driver WHQL Windows untuk Qualcomm HS-USB QDLoader 9008, MediaTek Preloader/VCOM DA, Samsung Mobile USB Modem/CDC, Unisoc/Spreadtrum U2S Diag & Download Port, serta serial COM UART.
+- **USB ADB & Fastboot Stack**: Sinkronisasi WinUSB composite endpoint dan Google/Kedacom Android Bootloader interface.
+- **Pipeline 5-Tahap Informatif**: Audit hardware SetupAPI, re-enumerasi native PnP bus, pencocokan signature INF Driver Store, restart daemon ADB host bridge, dan auto-refresh matrix device tanpa log penutup ganda.
+
+### 🌐 Network Sentinel & Auto-Update Engine
+- **Diagnostik Jaringan Native**: Uji konektivitas internet ICMP ping (1.1.1.1 & 8.8.8.8) dengan penilaian latensi RTT dan rating kesehatan jaringan.
+- **Uptime Probe GitHub**: Handshake TCP TLS port 443 dan pemeriksaan respons HTTP 200 OK endpoint GitHub.
+- **Streaming Live Downloader**: Pengunduhan paket pembaruan chunked dengan visualisasi Unicode progress bar [████████░░░░] real-time dan perhitungan kecepatan live transfer (KB/s, MB/s).
+- **1-Klik Deploy & Restart**: Pembuatan script otomatis `updates\apply_update.bat` untuk ekstraksi container ZIP dan relaunching otomatis.
+
+### 💻 Antarmuka & Frame Jendela Dinamis
+- **Universal Standby Reboot**: Menu Reboot kini selalu dapat diakses kapan saja meski tidak ada perangkat yang terhubung.
+- **Format Judul Jendela Dinamis**: Windows title kini menampilkan versi aktif secara otomatis: `[3.8.3] Antipas - Hemodialyzer Built for Android Platform`.
+- **Batas Ukuran Minimum GUI**: Mengunci batas ukuran minimum form pada 870 x 590 px (`WM_GETMINMAXINFO`) dengan layout responsif anti-overlapping.
+
+---
+
+## 📦 Version 3.8.2 (2026-09-05)
 
 ### 🛠️ Core Engine & ADB Bridge v2.0
 - **Android 16 & Modern SDK Compatibility**: Perbaikan parsing output perintah `adb devices` dengan pembersihan karakter kontrol (`\r\n`), mencegah error status `offline`/`unauthorized` palsu.

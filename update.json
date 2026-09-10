@@ -1,1 +1,5 @@
-{"version": "3.8.2","url": "https://github.com/gbluez/droid-update-server/archive/refs/heads/main.zip","info": "Update ANTIPAS v3.8.2: Perbaikan deteksi device ADB & fitur Remove BLOATWARE"}
+{
+  "version": "3.8.3",
+  "url": "https://github.com/gbluez/droid-update-server/archive/refs/heads/main.zip",
+  "info": "Update ANTIPAS v3.8.3: Install Mobile Driver WHQL, Network Sentinel, Dynamic Title dan Min Form Size"
+}
