@@ -1,5 +1,5 @@
-﻿{
-  "version": "3.8.4",
+{
+  "version": "3.8.5",
   "url": "https://github.com/gbluez/droid-update-server/archive/refs/heads/main.zip",
-  "info": "Update ANTIPAS v3.8.4: Interactive ADB Connection Guide, Visual RSA Popups, Multi-Vendor WHQL Driver Engine, Zero-Touch Auto-Update"
+  "info": "Update ANTIPAS v3.8.5: Policy Restriction Alert, Direct GitHub Distribution Link, Hotlink Navigation, Core UI Refinements"
 }

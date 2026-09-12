@@ -4,6 +4,21 @@ Dokumentasi riwayat rilis, fungsi, dan evolusi fitur aplikasi ANTIPAS sejak awal
 
 ---
 
+## 🚀 Version 3.8.5 (2026-09-12) - *Current Release*
+
+### 🛑 Standby Policy Restriction & Censorship Alert Popup
+- **Popup Protes Sensor & Restriksi Kebijakan**: Menampilkan jendela popup beraksen merah elegan bergaya HUD saat sistem mencapai status standby.
+- **Ikon Facebook Disilang Merah**: Kotak membulat biru khas Facebook dilengkapi huruf 'f' putih dan silang diagonal ganda tebal warna merah menyala (glowing crimson prohibition cross) beserta cincin larangan.
+- **Pemberitahuan Larangan & Pengalihan Distribusi**:
+  > *"Informasi update dan perbaikan tidak bisa di lakukan di sini, karena aturan yang entah dan harus di langgar."*
+- **Tautan Langsung GitHub Releases (Hotlink)**: Baris *"Halaman Github masih ada dan akan selalu ada. [ Klik di sini ]"* dengan status hover hand cursor (IDC_HAND), glow text, dan aktivasi langsung menuju repositori rilis resmi gbluez/droid-update-server.
+- **Timer Hitung Mundur & Progress Bar 10 Detik**: Durasi auto-dismiss 10 detik dengan bar visual merah menyala di bagian bawah serta opsi tutup manual instan ([ X ], ESC, Space, Enter).
+
+### ⚙️ Pembaruan Biner & Sinkronisasi Rilis
+- **Bumping Versi Biner 3.8.5**: Sinkronisasi header internal, metadata resource Windows (RC), judul jendela dinamis [3.8.5] Antipas, dan feed auto-updater JSON.
+
+---
+
 ## 🚀 Version 3.8.4 (2026-09-10) - *Current Release*
 
 ### 📱 Panduan Visual Koneksi ADB & Dialog Otentikasi RSA (Mockup SVG)
